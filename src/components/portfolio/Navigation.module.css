@@ -1,0 +1,80 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 16px 24px;
+}
+
+.scrolled {
+  background-color: rgba(15, 15, 35, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #2d2d44;
+}
+
+.inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.desktopNav {
+  display: flex;
+  gap: 32px;
+}
+
+.navLink {
+  padding: 8px 0;
+  font-size: 15px;
+  color: #a1a1aa;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.navLink:hover,
+.navLinkActive {
+  color: #6366f1;
+}
+
+.mobileMenuButton {
+  padding: 8px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  background-color: rgba(15, 15, 35, 0.98);
+  border-bottom: 1px solid #2d2d44;
+  padding: 16px;
+  z-index: 999;
+}
+
+.mobileNavLink {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  font-size: 18px;
+  color: #a1a1aa;
+  text-align: center;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #2d2d44;
+  cursor: pointer;
+}
+
+.mobileNavLinkActive {
+  color: #6366f1;
+  font-weight: 600;
+}

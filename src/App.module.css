@@ -1,0 +1,43 @@
+.page {
+  min-height: 100vh;
+  background-color: #0f0f23;
+}
+
+.main {
+  position: relative;
+}
+
+.sectionDark {
+  background-color: #0a0a1a;
+}
+
+.bgGlow1 {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background-color: #6366f1;
+  opacity: 0.15;
+  top: -200px;
+  right: -200px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bgGlow2 {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background-color: #06b6d4;
+  opacity: 0.1;
+  bottom: 400px;
+  left: -200px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.main > section {
+  position: relative;
+  z-index: 1;
+}
