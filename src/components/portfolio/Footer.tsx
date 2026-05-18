@@ -2,7 +2,7 @@ import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaHeart } from 'react-icon
 import styles from './Footer.module.css'
 
 const socialLinks = [
-  { icon: FaGithub, url: 'https://github.com' },
+  { icon: FaGithub, url: 'https://github.com/Convictor007' },
   { icon: FaLinkedin, url: 'https://linkedin.com' },
   { icon: FaTwitter, url: 'https://twitter.com' },
   { icon: FaEnvelope, url: 'mailto:dareyes@my.cspc.edu.ph' },
@@ -61,7 +61,7 @@ export default function Footer() {
 
           <nav className={styles.linkColumn}>
             <h4 className={styles.columnTitle}>Connect</h4>
-            <a className={styles.link} href="https://github.com" target="_blank" rel="noopener noreferrer">
+            <a className={styles.link} href="https://github.com/Convictor007" target="_blank" rel="noopener noreferrer">
               GitHub
             </a>
             <a className={styles.link} href="https://linkedin.com" target="_blank" rel="noopener noreferrer">

@@ -42,7 +42,7 @@ export default function HeroSection() {
           </button>
           <a
             className={styles.btnSecondary}
-            href="https://github.com"
+            href="https://github.com/Convictor007"
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -26,8 +26,8 @@ const contactInfo = [
   {
     icon: FaGithub,
     label: 'GitHub',
-    value: 'github.com/darryljohn',
-    link: 'https://github.com',
+    value: 'github.com/Convictor007',
+    link: 'https://github.com/Convictor007',
   },
   {
     icon: FaLinkedin,
