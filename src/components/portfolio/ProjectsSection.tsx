@@ -8,6 +8,8 @@ import {
   FaDatabase,
   FaCoffee,
   FaPlug,
+  FaLock,
+  FaUserGraduate,
 } from 'react-icons/fa'
 import styles from './ProjectsSection.module.css'
 
@@ -18,6 +20,7 @@ const projects: {
   github: string
   live: string | null
   type: string
+  previewCards: [string, string, string]
 }[] = [
   {
     title: 'Land Title Lot Plotter',
@@ -32,20 +35,24 @@ const projects: {
     github: 'https://github.com',
     live: null,
     type: 'Work Project',
+    previewCards: ['Plotting', 'Records', 'Reports'],
   },
   {
-    title: 'LGU Assessor Office Management System',
+    title: 'Student Information & Payment Recording System (SIPR)',
     description:
-      'A comprehensive desktop application for Local Government Unit Assessor Office to manage property records, tax assessments, and payment tracking. Built with Java Swing and MySQL to streamline the assessment process and improve record management efficiency.',
+      'A mini project for Camarines Sur Polytechnic Colleges — College of Computer Studies (BSIT 3F, Event Driven, SY 2024–2025). A secure, database-driven desktop system for teachers and ICT coordinators to manage kindergarten student profiles and payment records—including homeroom projects, miscellaneous fees, PTA projects, and other fees. Replaces manual record-keeping and receipt tracking with role-based login, paid/pending/unpaid status visibility, and tabular reports aligned with the Data Privacy Act (RA 10173). Developed for Duran Elementary School (Kindergarten, AY 2024–2025).',
     tech: [
       { name: 'Java', icon: FaCoffee },
       { name: 'MySQL', icon: FaDatabase },
       { name: 'NetBeans', icon: FaCode },
       { name: 'JDBC', icon: FaPlug },
+      { name: 'Event-Driven', icon: FaUserGraduate },
+      { name: 'Auth', icon: FaLock },
     ],
     github: 'https://github.com',
     live: null,
-    type: 'Work Project',
+    type: 'Academic Project · CSPC',
+    previewCards: ['Students', 'Payments', 'Status'],
   },
 ]
 
@@ -82,9 +89,15 @@ export default function ProjectsSection() {
 
               <div className={styles.projectDetails}>
                 <div className={styles.previewCards}>
-                  <span className={`${styles.previewCard} ${styles.previewPurple}`}>Dashboard</span>
-                  <span className={`${styles.previewCard} ${styles.previewCyan}`}>Records</span>
-                  <span className={`${styles.previewCard} ${styles.previewPink}`}>Payments</span>
+                  <span className={`${styles.previewCard} ${styles.previewPurple}`}>
+                    {project.previewCards[0]}
+                  </span>
+                  <span className={`${styles.previewCard} ${styles.previewCyan}`}>
+                    {project.previewCards[1]}
+                  </span>
+                  <span className={`${styles.previewCard} ${styles.previewPink}`}>
+                    {project.previewCards[2]}
+                  </span>
                 </div>
 
                 <div className={styles.projectInfo}>
