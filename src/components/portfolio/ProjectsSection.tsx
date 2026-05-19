@@ -11,9 +11,11 @@ import {
   FaLock,
   FaUserGraduate,
 } from 'react-icons/fa'
+import lamScreenshot from '../../images/LAMscreenshot.png'
+import lotPlotterScreenshot from '../../images/lot-plotter.png'
 import styles from './ProjectsSection.module.css'
 
-const projects: {
+type Project = {
   title: string
   description: string
   tech: { name: string; icon: IconType }[]
@@ -21,7 +23,10 @@ const projects: {
   live: string | null
   type: string
   previewCards: [string, string, string]
-}[] = [
+  image?: string
+}
+
+const projects: Project[] = [
   {
     title: 'Land Title Lot Plotter',
     description:
@@ -33,9 +38,10 @@ const projects: {
       { name: 'XAMPP', icon: FaServer },
     ],
     github: 'https://github.com/Convictor007/lot-plotter-',
-    live: null,
+    live: 'https://web-automated-lot-plotter.vercel.app',
     type: 'Work Project',
     previewCards: ['Plotting', 'Records', 'Reports'],
+    image: lotPlotterScreenshot,
   },
   {
     title: 'Student Information & Payment Recording System (SIPR)',
@@ -53,6 +59,7 @@ const projects: {
     live: null,
     type: 'Academic Project · CSPC',
     previewCards: ['Students', 'Payments', 'Status'],
+    image: lamScreenshot,
   },
 ]
 
@@ -68,7 +75,7 @@ export default function ProjectsSection() {
 
       <div className={styles.projectsContainer}>
         {projects.map((project) => {
-          const FirstIcon = project.tech[0].icon
+          const PreviewIcon = project.tech[0].icon
           return (
             <article key={project.title} className={styles.projectCard}>
               <div className={styles.projectPreview}>
@@ -80,9 +87,21 @@ export default function ProjectsSection() {
                       <span className={styles.dotGreen} />
                     </div>
                   </div>
-                  <div className={styles.mockupContent}>
-                    <FirstIcon size={48} color="#6366f1" />
-                    <p>{project.title}</p>
+                  <div
+                    className={`${styles.mockupContent}${project.image ? ` ${styles.mockupContentHasImage}` : ''}`}
+                  >
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={`${project.title} preview screenshot`}
+                        className={styles.mockupPreviewImg}
+                      />
+                    ) : (
+                      <>
+                        <PreviewIcon size={48} color="#6366f1" />
+                        <p>{project.title}</p>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
