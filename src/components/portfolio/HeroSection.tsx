@@ -5,7 +5,6 @@ import {
   FaRoad,
   FaBriefcase,
 } from 'react-icons/fa'
-import profilePicture from '../../images/profile-picture.jpg'
 import styles from './HeroSection.module.css'
 
 export default function HeroSection() {
@@ -106,20 +105,6 @@ export default function HeroSection() {
           </section>
         </div>
 
-        <aside className={styles.heroVisual} aria-label="Profile photo">
-          <div className={styles.visualGlow} aria-hidden />
-          <div className={styles.avatarRing}>
-            <div className={styles.avatarInner}>
-              <img
-                src={profilePicture}
-                alt="Darryl John Reyes — Full Stack Web Developer"
-                className={styles.avatarImg}
-                width={320}
-                height={320}
-              />
-            </div>
-          </div>
-        </aside>
       </div>
     </div>
   )
