@@ -66,11 +66,15 @@ export default function ContactSection() {
         body: JSON.stringify(formData),
       })
 
+      const result = (await response.json().catch(() => null)) as {
+        message?: string
+      } | null
+
       if (response.ok) {
         setSuccess(true)
         setFormData({ name: '', email: '', subject: '', message: '' })
       } else {
-        setError('Failed to send message. Please try again.')
+        setError(result?.message ?? 'Failed to send message. Please try again.')
       }
     } catch {
       setError('Network error. Please try again.')

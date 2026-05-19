@@ -1,4 +1,5 @@
 import type { IncomingMessage, ServerResponse } from 'http'
+import { isEmailConfigured, sendContactEmail } from './contactEmail'
 
 export type ContactFormData = {
   name: string
@@ -7,14 +8,10 @@ export type ContactFormData = {
   message: string
 }
 
-function sanitizeInput(input: string): string {
-  return input
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#x27;')
-    .replace(/\//g, '&#x2F;')
-    .trim()
+const MAX_FIELD_LENGTH = 5000
+
+function trimField(value: string, max = MAX_FIELD_LENGTH): string {
+  return value.trim().slice(0, max)
 }
 
 function readBody(req: IncomingMessage): Promise<string> {
@@ -56,6 +53,7 @@ export async function handleContactApi(
       endpoints: { POST: '/api/contact - Submit contact form' },
       requiredFields: ['name', 'email', 'message'],
       optionalFields: ['subject'],
+      emailConfigured: isEmailConfigured(),
     })
     return
   }
@@ -83,29 +81,41 @@ export async function handleContactApi(
       return
     }
 
-    const sanitizedData: ContactFormData = {
-      name: sanitizeInput(body.name),
-      email: sanitizeInput(body.email),
-      subject: body.subject ? sanitizeInput(body.subject) : undefined,
-      message: sanitizeInput(body.message),
+    const payload: ContactFormData = {
+      name: trimField(String(body.name), 200),
+      email: trimField(String(body.email), 320),
+      subject: body.subject ? trimField(String(body.subject), 200) : undefined,
+      message: trimField(String(body.message)),
     }
 
-    console.log('Contact form submission:', {
-      ...sanitizedData,
-      timestamp: new Date().toISOString(),
-    })
+    if (!isEmailConfigured()) {
+      sendJson(res, 503, {
+        success: false,
+        message: 'Contact email is not configured on the server.',
+      })
+      return
+    }
 
-    await new Promise((resolve) => setTimeout(resolve, 500))
+    await sendContactEmail(payload)
 
     sendJson(res, 200, {
       success: true,
       message: 'Message received successfully. Thank you for reaching out!',
-      data: sanitizedData,
     })
-  } catch {
+  } catch (error) {
+    const code = error instanceof Error ? error.message : ''
+    if (code === 'EMAIL_NOT_CONFIGURED') {
+      sendJson(res, 503, {
+        success: false,
+        message: 'Contact email is not configured on the server.',
+      })
+      return
+    }
+
+    console.error('Contact form error:', error)
     sendJson(res, 500, {
       success: false,
-      message: 'Internal server error. Please try again later.',
+      message: 'Failed to send message. Please try again later.',
     })
   }
 }

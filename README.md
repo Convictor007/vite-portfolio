@@ -18,7 +18,7 @@ npm run preview  # preview production build
 - `POST /api/contact` — contact form
 - `GET /api/health` — health check
 
-Contact submissions are logged on the server (wire up email or a backend API for production).
+Contact form sends email via Gmail SMTP (no database). Copy `.env.example` to `.env` for local dev, and add the same variables in the Vercel project settings for production.
 
 ## Live site
 
